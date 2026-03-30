@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCAC Advocacia — Estabilidade para Gestantes em Contrato Temporário</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C8102E;
+    --rose-dark: #A00D26;
+    --rose-light: #FDF0F2;
+    --cream: #F9F9F9;
+    --charcoal: #111118;
+    --charcoal-mid: #1E1E2A;
+    --muted: #72728A;
+    --border: #E4E4EE;
+    --white: #FFFFFF;
+    --success: #16A34A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(17,17,24,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    width: 36px; height: 36px;
+    background: var(--rose);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    display: block;
+  }
+
+  .brand-tagline {
+    font-size: 10px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .navbar-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--rose);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .navbar-cta:hover { background: var(--rose-dark); transform: translateY(-1px); }
+
+  /* URGENCY */
+  .urgency-bar {
+    background: var(--rose-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 11px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 65px;
+  }
+
+  .urgency-bar strong { font-weight: 700; }
+
+  /* HERO */
+  .hero {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 68% 38%, rgba(200,16,46,0.17) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 60% at 5% 85%, rgba(200,16,46,0.06) 0%, transparent 60%);
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 32px 80px;
+    display: grid;
+    grid-template-columns: 1fr 390px;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,16,46,0.13);
+    border: 1px solid rgba(200,16,46,0.28);
+    color: #FF8096;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    animation: fadeInDown 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #FF4060;
+    animation: pulse-dot 1.4s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.65); }
+  }
+
+  .hero-title {
+    font-size: clamp(34px, 4.5vw, 58px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.025em;
+    animation: fadeInDown 0.7s 0.1s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-subtitle {
+    font-size: 15.5px;
+    font-weight: 300;
+    line-height: 1.72;
+    color: rgba(255,255,255,0.62);
+    max-width: 490px;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.7s 0.2s ease both;
+  }
+
+  .hero-subtitle strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+  .hero-stats {
+    display: flex;
+    gap: 36px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 30px;
+    animation: fadeInDown 0.7s 0.3s ease both;
+  }
+
+  .stat { display: flex; flex-direction: column; }
+
+  .stat-num {
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.38);
+    margin-top: 4px;
+  }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 34px 30px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    animation: fadeInRight 0.8s 0.2s ease both;
+    position: relative;
+  }
+
+  .form-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .form-logo-mark {
+    width: 30px; height: 30px;
+    background: var(--rose);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .form-logo-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .form-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 5px;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+
+  .field { margin-bottom: 15px; }
+
+  .field label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--charcoal);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(200,16,46,0.09);
+    background: var(--white);
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .radio-option { position: relative; cursor: pointer; }
+
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0; width: 0; height: 0;
+  }
+
+  .radio-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 9px 7px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--cream);
+    cursor: pointer;
+    transition: all 0.17s;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .radio-option input[type="radio"]:checked + .radio-label {
+    border-color: var(--rose);
+    background: var(--rose-light);
+    color: var(--rose-dark);
+    font-weight: 600;
+  }
+
+  .cta-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--rose);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 5px 18px rgba(200,16,46,0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-btn:hover {
+    background: var(--rose-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(200,16,46,0.36);
+  }
+
+  .form-privacy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 11px;
+    font-size: 11px;
+    font-weight: 400;
+    color: #BBB;
+  }
+
+  /* SUCCESS */
+  .success-screen { display: none; text-align: center; padding: 12px 0; }
+
+  .success-icon {
+    width: 52px; height: 52px;
+    background: var(--success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 22px;
+    color: white;
+  }
+
+  .success-screen h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .success-screen p {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* SECTIONS */
+  .section { padding: 88px 32px; }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    border: 1px solid rgba(200,16,46,0.2);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(25px, 3.4vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    color: var(--charcoal);
+    margin-bottom: 13px;
+    letter-spacing: -0.025em;
+  }
+
+  .section-desc {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.72;
+    max-width: 520px;
+  }
+
+  /* WHAT CHANGED */
+  .what-changed { background: var(--charcoal); }
+  .what-changed .section-tag { border-color: rgba(200,16,46,0.28); color: #FF8096; }
+  .what-changed .section-title { color: var(--white); }
+  .what-changed .section-desc { color: rgba(255,255,255,0.48); }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr 44px 1fr;
+    margin-top: 50px;
+  }
+
+  .timeline-side { display: flex; flex-direction: column; gap: 22px; }
+
+  .timeline-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+  }
+
+  .timeline-line {
+    width: 1px; flex: 1;
+    background: linear-gradient(180deg, rgba(200,16,46,0.4), rgba(200,16,46,0.08));
+    min-height: 160px;
+  }
+
+  .timeline-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--rose);
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(200,16,46,0.5);
+  }
+
+  .tl-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .tl-card.bad { border-color: rgba(200,16,46,0.18); }
+  .tl-card.good { border-color: rgba(22,163,74,0.2); }
+
+  .tl-year {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .tl-card.bad .tl-year { color: #FF7A8A; }
+  .tl-card.good .tl-year { color: #4ADE80; }
+
+  .tl-card h4 {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 7px;
+    line-height: 1.4;
+  }
+
+  .tl-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.48);
+    line-height: 1.65;
+  }
+
+  /* RIGHTS */
+  .rights-section { background: var(--white); }
+
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 46px;
+  }
+
+  .right-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 22px;
+    transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+  }
+
+  .right-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+    border-color: rgba(200,16,46,0.2);
+  }
+
+  .right-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+
+  .right-card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 9px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .right-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .right-highlight {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rose);
+    background: var(--rose-light);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  /* QUALIFY */
+  .qualify-section { background: var(--charcoal); position: relative; overflow: hidden; }
+  .qualify-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 55% 65% at 88% 50%, rgba(200,16,46,0.08) 0%, transparent 60%);
+  }
+  .qualify-section .section-title { color: var(--white); }
+  .qualify-section .section-tag { color: #FF8096; border-color: rgba(200,16,46,0.28); }
+  .qualify-section .section-desc { color: rgba(255,255,255,0.48); }
+
+  .qualify-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 46px;
+    position: relative; z-index: 1;
+  }
+
+  .qualify-list { display: flex; flex-direction: column; gap: 11px; }
+
+  .qualify-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 15px 17px;
+  }
+
+  .qualify-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .qualify-check.yes { background: rgba(22,163,74,0.16); color: #4ADE80; border: 1px solid rgba(22,163,74,0.22); }
+  .qualify-check.no { background: rgba(200,16,46,0.12); color: #FF8096; border: 1px solid rgba(200,16,46,0.18); }
+
+  .qualify-item p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.73);
+    line-height: 1.6;
+  }
+
+  .qualify-item p strong { color: var(--white); font-weight: 600; }
+
+  .qualify-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .qualify-label.yes-label { color: #4ADE80; }
+  .qualify-label.no-label { color: #FF8096; }
+
+  /* PROOF */
+  .proof-section { background: var(--cream); }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 46px;
+  }
+
+  .proof-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .proof-card::before {
+    content: '"';
+    font-size: 68px;
+    font-weight: 800;
+    color: var(--rose);
+    opacity: 0.07;
+    position: absolute;
+    top: 2px; left: 14px;
+    line-height: 1;
+  }
+
+  .proof-text {
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.72;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+    position: relative; z-index: 1;
+  }
+
+  .proof-author { display: flex; align-items: center; gap: 10px; }
+
+  .proof-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--rose-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .proof-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  .proof-role {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: var(--charcoal);
+    text-align: center;
+    padding: 96px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 56% 70% at 50% 50%, rgba(200,16,46,0.13) 0%, transparent 65%);
+  }
+
+  .final-cta-content { position: relative; z-index: 1; }
+
+  .final-cta h2 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.18;
+    margin-bottom: 15px;
+    letter-spacing: -0.025em;
+  }
+
+  .final-cta > .final-cta-content > p {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.58);
+    max-width: 480px;
+    margin: 0 auto 34px;
+    line-height: 1.72;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--rose);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 7px 22px rgba(200,16,46,0.28);
+    text-decoration: none;
+  }
+
+  .cta-primary:hover {
+    background: var(--rose-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 13px 30px rgba(200,16,46,0.38);
+  }
+
+  .final-sub {
+    margin-top: 16px;
+    font-size: 11.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* BRAND STRIP */
+  .brand-strip {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .brand-strip-logo {
+    width: 38px; height: 38px;
+    background: var(--rose);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .brand-strip-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--charcoal);
+    display: block;
+  }
+
+  .brand-strip-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  .brand-strip-divider {
+    width: 1px; height: 28px;
+    background: var(--border);
+  }
+
+  .brand-strip-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .brand-strip-stat span { font-weight: 700; color: var(--charcoal); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: rgba(255,255,255,0.32);
+    padding: 30px 32px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  footer strong { color: rgba(255,255,255,0.58); font-weight: 600; }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .footer-logo {
+    width: 26px; height: 26px;
+    background: var(--rose);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .footer-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* FLOAT */
+  .scroll-cta {
+    position: fixed;
+    bottom: 22px; right: 22px;
+    z-index: 100;
+    background: var(--rose);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 22px rgba(200,16,46,0.38);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: all 0.28s;
+    pointer-events: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .scroll-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(26px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 880px) {
+    .hero-container { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline-center { display: none; }
+    .rights-grid { grid-template-columns: 1fr; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .qualify-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; gap: 18px; }
+  }
+
+  @media (max-width: 560px) {
+    .section { padding: 56px 20px; }
+    .hero-container { padding: 60px 20px 60px; }
+    .form-card { padding: 22px 18px; }
+    .radio-group { grid-template-columns: 1fr; }
+    .scroll-cta { font-size: 12px; padding: 11px 16px; bottom: 14px; right: 14px; }
+    .navbar-cta span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0" class="navbar-brand" target="_blank" rel="noopener">
+    <div class="brand-mark">SC</div>
+    <div>
+      <span class="brand-name">SCAC Advocacia</span>
+      <span class="brand-tagline">Silva & Cikanovicius · Trabalhista e Previdenciário</span>
+    </div>
+  </a>
+  <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0" class="navbar-cta" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <span>Fale com um especialista</span>
+  </a>
+</nav>
+
+<!-- URGENCY -->
+<div class="urgency-bar">
+  <strong>⚖️ DECISÃO DO TST — 23/03/2026:</strong> Por 14 votos a 0, gestantes em contrato temporário passam a ter estabilidade garantida. Seu direito pode estar prescrevendo.
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Decisão histórica · TST · Março 2026
+      </div>
+      <h1 class="hero-title">
+        Você foi demitida<br>
+        enquanto estava<br>
+        <em>grávida?</em>
+      </h1>
+      <p class="hero-subtitle">
+        O TST reconheceu que gestantes em contratos temporários têm <strong>direito à estabilidade desde a confirmação da gravidez</strong> até 5 meses após o parto — independentemente do tipo de contrato.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">14×0</span>
+          <span class="stat-label">votos unânimes no TST</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">5 meses</span>
+          <span class="stat-label">proteção pós-parto</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">+1.000</span>
+          <span class="stat-label">processos conduzidos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card" id="form-section">
+      <div id="form-screen">
+        <div class="form-card-header">
+          <div class="form-logo-mark">SC</div>
+          <div class="form-logo-text">SCAC Advocacia · Trabalhista</div>
+        </div>
+
+        <h2 class="form-title">Verifique se você tem<br>direito à indenização</h2>
+        <p class="form-sub">Preencha abaixo — nossa equipe entra em contato em até 24h</p>
+
+        <div class="field">
+          <label>Nome completo</label>
+          <input type="text" id="nome" placeholder="Ex: Maria da Silva" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label>WhatsApp com DDD</label>
+          <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel">
+        </div>
+
+        <div class="field">
+          <label>Tipo de contrato que você tinha</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="contrato" value="temporario">
+              <span class="radio-label">📋 Temporário</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="contrato" value="prazo_determinado">
+              <span class="radio-label">📅 Prazo determinado</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="contrato" value="clt">
+              <span class="radio-label">📄 CLT / Efetivo</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="contrato" value="nao_sei">
+              <span class="radio-label">❓ Não sei</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Quando ocorreu a demissão?</label>
+          <select id="quando">
+            <option value="">Selecione o período</option>
+            <option value="2025_2026">Em 2025 ou 2026</option>
+            <option value="2023_2024">Em 2023 ou 2024</option>
+            <option value="2021_2022">Em 2021 ou 2022</option>
+            <option value="2019_2020">Em 2019 ou 2020</option>
+            <option value="antes_2019">Antes de 2019</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Você estava grávida na data da demissão?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="gravida" value="sim_sabia">
+              <span class="radio-label">✅ Sim, sabia</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gravida" value="descobri_depois">
+              <span class="radio-label">🤔 Descobri depois</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gravida" value="pos_parto">
+              <span class="radio-label">👶 5 meses pós-parto</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="gravida" value="nao_sei">
+              <span class="radio-label">❓ Não tenho certeza</span>
+            </label>
+          </div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+           class="cta-btn" id="cta-form" target="_blank" rel="noopener"
+           onclick="return handleSubmit(event)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Quero verificar meu direito agora
+        </a>
+
+        <div class="form-privacy">🔒 Seus dados são confidenciais e protegidos</div>
+      </div>
+
+      <div class="success-screen" id="success-screen">
+        <div class="success-icon">✓</div>
+        <h3>Recebemos seu contato!</h3>
+        <p>A equipe da <strong>SCAC Advocacia</strong> vai analisar seu caso e entrar em contato em até <strong>24 horas</strong>.</p>
+        <br>
+        <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+           target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:7px;background:var(--rose);color:white;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:11px 20px;border-radius:8px;text-decoration:none;margin-top:6px;">
+          💬 Falar agora pelo WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STRIP -->
+<div class="brand-strip reveal">
+  <div class="brand-strip-logo">SC</div>
+  <div>
+    <span class="brand-strip-name">SCAC Advocacia</span>
+    <span class="brand-strip-sub">Silva & Cikanovicius · Joinville/SC · Atendimento nacional</span>
+  </div>
+  <div class="brand-strip-divider"></div>
+  <div class="brand-strip-stat">⭐ <span>5 estrelas</span>&nbsp;no Google</div>
+  <div class="brand-strip-divider"></div>
+  <div class="brand-strip-stat">⚖️ <span>+1.000</span>&nbsp;processos</div>
+  <div class="brand-strip-divider"></div>
+  <div class="brand-strip-stat">🇧🇷 Atendimento <span>online</span>&nbsp;nacional</div>
+</div>
+
+<!-- O QUE MUDOU -->
+<section class="section what-changed">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Entenda a decisão</span>
+      <h2 class="section-title">O que mudou com a decisão<br>do TST em março de 2026?</h2>
+      <p class="section-desc">Durante anos, gestantes em contratos temporários foram dispensadas sem proteção alguma. Isso mudou definitivamente.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="timeline-side">
+        <div class="tl-card bad">
+          <div class="tl-year">❌ Até 2019 — TST negava proteção</div>
+          <h4>Gestantes podiam ser demitidas livremente</h4>
+          <p>O Tribunal entendia que contratos temporários eram incompatíveis com estabilidade. Milhares de mulheres foram dispensadas sem qualquer indenização.</p>
+        </div>
+        <div class="tl-card bad">
+          <div class="tl-year">⚠️ 2019–2023 — Lacuna jurídica</div>
+          <h4>Empresas usavam a brecha sistematicamente</h4>
+          <p>Contratos temporários viraram instrumento para contornar direitos de gestantes. O prejuízo era inteiramente da trabalhadora.</p>
+        </div>
+      </div>
+      <div class="timeline-center">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-side">
+        <div class="tl-card good">
+          <div class="tl-year">✅ Outubro 2023 — STF</div>
+          <h4>STF reconhece o direito à estabilidade</h4>
+          <p>O Supremo fixou que a estabilidade gestacional independe do regime de contratação. A tese vinculante abriu caminho para a virada no TST.</p>
+        </div>
+        <div class="tl-card good" style="border-color:rgba(200,16,46,0.3);">
+          <div class="tl-year" style="color:#FF8096;">🏛️ 23 de Março de 2026 — TST</div>
+          <h4>Placar histórico: 14 a 0</h4>
+          <p>O Pleno do TST revira sua própria jurisprudência. A proteção vale da confirmação da gravidez até os 5 meses após o parto — em qualquer modalidade de contrato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIREITOS -->
+<section class="section rights-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Seus direitos</span>
+      <h2 class="section-title">O que essa decisão garante a você</h2>
+      <p class="section-desc" style="margin:0 auto;">Entenda na prática o impacto da decisão histórica para você e sua família.</p>
+    </div>
+    <div class="rights-grid">
+      <div class="right-card reveal">
+        <span class="right-icon">🛡️</span>
+        <h3>Estabilidade Provisória no Emprego</h3>
+        <p>Proteção contra demissão desde a confirmação da gravidez até o bebê completar 5 meses. O encerramento do contrato temporário não cancela esse direito.</p>
+        <span class="right-highlight">Da gravidez até 5 meses pós-parto</span>
+      </div>
+      <div class="right-card reveal">
+        <span class="right-icon">💰</span>
+        <h3>Indenização por Demissão Indevida</h3>
+        <p>Se dispensada durante o período protegido, você tem direito a todos os salários correspondentes ao período de estabilidade não respeitado.</p>
+        <span class="right-highlight">Salários + verbas rescisórias</span>
+      </div>
+      <div class="right-card reveal">
+        <span class="right-icon">🤱</span>
+        <h3>Licença-Maternidade Integral</h3>
+        <p>Direito à licença remunerada independentemente do tipo de contrato. Se foi negada ou interrompida sem amparo legal, cabe indenização.</p>
+        <span class="right-highlight">120 dias garantidos por lei</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFICAÇÃO -->
+<section class="section qualify-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">Você se qualifica?</span>
+      <h2 class="section-title">Descubra se o seu caso<br>é coberto pela decisão</h2>
+      <p class="section-desc">A decisão pode ter efeito retroativo. Mesmo que a demissão tenha ocorrido há alguns anos, pode haver direito a reconhecimento.</p>
+    </div>
+    <div class="qualify-grid">
+      <div>
+        <p class="qualify-label yes-label">✔ Você provavelmente se qualifica se…</p>
+        <div class="qualify-list">
+          <div class="qualify-item reveal">
+            <div class="qualify-check yes">✓</div>
+            <p>Tinha <strong>contrato temporário, por prazo determinado ou via terceirização</strong> quando foi demitida</p>
+          </div>
+          <div class="qualify-item reveal">
+            <div class="qualify-check yes">✓</div>
+            <p>Estava <strong>grávida na data da demissão</strong>, mesmo que ainda não soubesse</p>
+          </div>
+          <div class="qualify-item reveal">
+            <div class="qualify-check yes">✓</div>
+            <p>Foi dispensada durante a gestação ou <strong>nos 5 meses após o nascimento</strong></p>
+          </div>
+          <div class="qualify-item reveal">
+            <div class="qualify-check yes">✓</div>
+            <p>A demissão ocorreu <strong>a partir de outubro de 2023</strong> ou em período a ser definido pela modulação</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="qualify-label no-label">⚠ Situações que exigem análise específica</p>
+        <div class="qualify-list">
+          <div class="qualify-item reveal">
+            <div class="qualify-check no">!</div>
+            <p>Demissões antes de 2019 — <strong>prazo prescricional</strong> pode limitar o alcance da ação</p>
+          </div>
+          <div class="qualify-item reveal">
+            <div class="qualify-check no">!</div>
+            <p>Casos com <strong>acordo ou quitação total</strong> já homologados podem ter restrições</p>
+          </div>
+          <div class="qualify-item reveal">
+            <div class="qualify-check no">!</div>
+            <p>Situações onde a <strong>modulação dos efeitos</strong> ainda será definida pelo TST nas próximas sessões</p>
+          </div>
+        </div>
+        <div style="margin-top:24px;background:rgba(200,16,46,0.07);border:1px solid rgba(200,16,46,0.16);border-radius:12px;padding:18px;">
+          <p style="font-size:13px;color:rgba(255,255,255,0.68);line-height:1.65;">
+            ⚡ <strong style="color:white;">Não fique na dúvida.</strong> Os especialistas da SCAC identificam se o seu caso é elegível antes de qualquer compromisso.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section proof-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">Histórias reais</span>
+      <h2 class="section-title">Mulheres que descobriram<br>o que sempre foi delas</h2>
+      <p class="section-desc" style="margin:0 auto;">Trabalhadoras em todo o Brasil buscando o reconhecimento que a lei sempre garantiu.</p>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <p class="proof-text">Fui demitida da empresa de logística com 3 meses de gravidez. Meu contrato era temporário e achei que não havia nada a fazer. Quando soube da decisão do TST, entrei em contato com a SCAC e descobri que tinha direito a mais de 8 meses de salário.</p>
+        <div class="proof-author">
+          <div class="proof-avatar">👩</div>
+          <div>
+            <div class="proof-name">Fernanda R., 28 anos</div>
+            <div class="proof-role">Ex-operadora de caixa · São Paulo/SP</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card reveal">
+        <p class="proof-text">Trabalhava numa cervejaria como temporária e nem sabia que estava grávida quando me demitiram. Um advogado me disse que não tinha direito. Depois que a lei mudou, a SCAC mostrou que tinha sim — e estou correndo atrás do que é meu.</p>
+        <div class="proof-author">
+          <div class="proof-avatar">👩‍🦱</div>
+          <div>
+            <div class="proof-name">Aline M., 31 anos</div>
+            <div class="proof-role">Operária de produção · Minas Gerais</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card reveal">
+        <p class="proof-text">Meu contrato era de 6 meses como promotora. No quinto mês fui dispensada. Só depois descobri que estava grávida de 6 semanas. Não sabia que a lei me protegia. A equipe da SCAC mudou tudo.</p>
+        <div class="proof-author">
+          <div class="proof-avatar">🧑‍🦰</div>
+          <div>
+            <div class="proof-name">Juliana C., 26 anos</div>
+            <div class="proof-role">Promotora de vendas · Rio de Janeiro/RJ</div>
+          </div>
+        </div>
+      </div>
+      <div class="proof-card reveal">
+        <p class="proof-text">Me disseram que contratos temporários não tinham proteção. Aceitei a demissão como se fosse normal. Depois da decisão do TST, procurei a SCAC e meu processo está em andamento na Justiça do Trabalho.</p>
+        <div class="proof-author">
+          <div class="proof-avatar">👩‍🦳</div>
+          <div>
+            <div class="proof-name">Renata S., 34 anos</div>
+            <div class="proof-role">Auxiliar administrativa · Porto Alegre/RS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-content reveal">
+    <h2>Não deixe prescrever<br>o que é seu por direito.</h2>
+    <p>A decisão é recente e os prazos para agir são limitados. Fale com os especialistas da SCAC Advocacia e descubra se você tem direito à indenização.</p>
+    <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+       class="cta-primary" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Falar com especialista da SCAC
+    </a>
+    <p class="final-sub">SCAC Advocacia · Silva & Cikanovicius · Joinville/SC · Atendimento em todo o Brasil</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">SC</div>
+    <span class="footer-name">SCAC Advocacia — Silva & Cikanovicius</span>
+  </div>
+  <p><strong>Aviso Legal:</strong> Este site tem caráter informativo e não configura consultoria jurídica. As informações baseiam-se na decisão do TST de 23/03/2026 e na tese do STF (Tema 542). Cada caso deve ser analisado individualmente por profissional habilitado.</p>
+  <br>
+  <p>© 2026 · SCAC Advocacia · Advocacia Trabalhista e Previdenciária · Todos os direitos reservados.</p>
+</footer>
+
+<!-- FLOAT -->
+<a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+   class="scroll-cta" id="floatBtn" target="_blank" rel="noopener">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  Falar com SCAC
+</a>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 50);
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+
+  // Float btn
+  const floatBtn = document.getElementById('floatBtn');
+  window.addEventListener('scroll', () => {
+    floatBtn.classList.toggle('visible', window.scrollY > 460);
+  });
+
+  // Phone mask
+  document.getElementById('whatsapp').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g, '').substring(0, 11);
+    if (v.length > 6) v = `(${v.substring(0,2)}) ${v.substring(2,7)}-${v.substring(7)}`;
+    else if (v.length > 2) v = `(${v.substring(0,2)}) ${v.substring(2)}`;
+    else if (v.length > 0) v = `(${v}`;
+    e.target.value = v;
+  });
+
+  function handleSubmit(e) {
+    const nome = document.getElementById('nome').value.trim();
+    const whatsapp = document.getElementById('whatsapp').value.trim();
+    const contrato = document.querySelector('input[name="contrato"]:checked');
+    const quando = document.getElementById('quando').value;
+    const gravida = document.querySelector('input[name="gravida"]:checked');
+
+    if (!nome) { e.preventDefault(); highlight('nome'); return false; }
+    if (whatsapp.length < 14) { e.preventDefault(); highlight('whatsapp'); return false; }
+    if (!contrato) { e.preventDefault(); alert('Por favor, selecione o tipo de contrato.'); return false; }
+    if (!quando) { e.preventDefault(); highlight('quando'); return false; }
+    if (!gravida) { e.preventDefault(); alert('Por favor, informe se estava grávida na demissão.'); return false; }
+
+    setTimeout(() => {
+      document.getElementById('form-screen').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+    }, 200);
+    return true;
+  }
+
+  function highlight(id) {
+    const el = document.getElementById(id);
+    el.style.borderColor = 'var(--rose)';
+    el.style.boxShadow = '0 0 0 3px rgba(200,16,46,0.14)';
+    el.focus();
+    setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2200);
+  }
+</script>
+</body>
+</html>
