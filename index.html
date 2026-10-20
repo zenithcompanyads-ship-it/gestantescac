@@ -915,24 +915,169 @@
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* CARROSSEL */
+  .carousel-section {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-section::before,
+  .carousel-section::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .carousel-section::before {
+    left: 0;
+    background: linear-gradient(to right, var(--white), transparent);
+  }
+  .carousel-section::after {
+    right: 0;
+    background: linear-gradient(to left, var(--white), transparent);
+  }
+
+  .carousel-track-wrap { overflow: hidden; }
+
+  .carousel-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: carouselSlide 36s linear infinite;
+  }
+
+  .carousel-track:hover { animation-play-state: paused; }
+
+  @keyframes carouselSlide {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Card de imagem */
+  .c-img-card {
+    width: 260px;
+    height: 168px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.09);
+  }
+
+  .c-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .c-img-card:hover img { transform: scale(1.04); }
+
+  .c-img-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(17,17,24,0.78));
+    color: white;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 20px 14px 12px;
+    letter-spacing: 0.01em;
+  }
+
+  /* Card de selo/conquista */
+  .c-badge-card {
+    width: 160px;
+    height: 168px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 18px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+
+  .c-badge-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    border-color: rgba(200,16,46,0.2);
+  }
+
+  .c-badge-icon { font-size: 26px; line-height: 1; }
+
+  .c-badge-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--charcoal);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .c-badge-desc {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 880px) {
-    .hero-container { grid-template-columns: 1fr; }
-    .timeline { grid-template-columns: 1fr; }
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      text-align: center;
+    }
+    .hero-title { font-size: clamp(30px, 8vw, 48px); }
+    .badge { margin-left: auto; margin-right: auto; }
+    .hero-subtitle { margin-left: auto; margin-right: auto; text-align: left; }
+    .hero-stats { justify-content: center; flex-wrap: wrap; gap: 18px; }
+    .form-card { max-width: 480px; margin: 0 auto; width: 100%; }
+    .timeline { grid-template-columns: 1fr; gap: 14px; }
     .timeline-center { display: none; }
     .rights-grid { grid-template-columns: 1fr; }
     .proof-grid { grid-template-columns: 1fr; }
     .qualify-grid { grid-template-columns: 1fr; }
-    .hero-stats { flex-wrap: wrap; gap: 18px; }
+    .navbar { padding: 12px 18px; }
   }
 
   @media (max-width: 560px) {
-    .section { padding: 56px 20px; }
-    .hero-container { padding: 60px 20px 60px; }
-    .form-card { padding: 22px 18px; }
+    .section { padding: 52px 16px; }
+    .hero-container { padding: 52px 16px 48px; gap: 28px; }
+    .hero-title { font-size: clamp(28px, 9vw, 40px); }
+    .hero-subtitle { font-size: 14.5px; }
+    .form-card { padding: 22px 16px; border-radius: 12px; max-width: 100%; }
+    .form-title { font-size: 17px; }
     .radio-group { grid-template-columns: 1fr; }
+    .radio-label { padding: 10px 12px; font-size: 12px; justify-content: flex-start; gap: 8px; }
+    .hero-stats { gap: 14px; }
+    .stat-num { font-size: 22px; }
     .scroll-cta { font-size: 12px; padding: 11px 16px; bottom: 14px; right: 14px; }
     .navbar-cta span { display: none; }
+    .navbar-cta { padding: 9px 13px; }
+    .brand-strip { gap: 12px; padding: 16px; }
+    .brand-strip-divider { display: none; }
+    .cta-btn { font-size: 13.5px; padding: 13px 10px; }
+    .final-cta { padding: 64px 16px; }
+  }
+
+  @media (max-width: 400px) {
+    .hero-container { padding: 44px 14px 40px; }
+    .form-card { padding: 18px 14px; }
+    .badge { font-size: 10px; padding: 5px 10px; }
+    .navbar-cta { display: none; }
   }
 </style>
 <!-- Meta Pixel Code -->
@@ -957,14 +1102,14 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0" class="navbar-brand" target="_blank" rel="noopener">
+  <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-brand" target="_blank" rel="noopener">
     <div class="brand-mark">SC</div>
     <div>
       <span class="brand-name">SCAC Advocacia</span>
       <span class="brand-tagline">Silva & Cikanovicius · Trabalhista e Previdenciário</span>
     </div>
   </a>
-  <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0" class="navbar-cta" target="_blank" rel="noopener">
+  <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-cta" target="_blank" rel="noopener">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     <span>Fale com um especialista</span>
   </a>
@@ -1099,7 +1244,8 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
         <h3>Recebemos seu contato!</h3>
         <p>A equipe da <strong>SCAC Advocacia</strong> vai analisar seu caso e entrar em contato em até <strong>24 horas</strong>.</p>
         <br>
-        <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+        <a id="success-wa-btn"
+           href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0"
            target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:7px;background:var(--rose);color:white;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:11px 20px;border-radius:8px;text-decoration:none;margin-top:6px;">
           💬 Falar agora pelo WhatsApp
@@ -1197,6 +1343,100 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+
+<!-- CARROSSEL -->
+<div class="carousel-section">
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carouselTrack">
+
+      <!-- Imagem 1 — mãe e bebê -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=420&q=80&auto=format&fit=crop" alt="Mãe gestante segurando barriga" loading="lazy">
+        <div class="c-img-label">Proteção garantida por lei</div>
+      </div>
+
+      <!-- Selo 1 -->
+      <div class="c-badge-card">
+        <div class="c-badge-icon">⭐⭐⭐⭐⭐</div>
+        <div class="c-badge-num">5,0</div>
+        <div class="c-badge-desc">Avaliação no Google</div>
+      </div>
+
+      <!-- Imagem 2 — trabalho / direitos -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=420&q=80&auto=format&fit=crop" alt="Contrato de trabalho sendo assinado" loading="lazy">
+        <div class="c-img-label">Seus direitos trabalhistas</div>
+      </div>
+
+      <!-- Selo 2 -->
+      <div class="c-badge-card">
+        <div class="c-badge-icon">⚖️</div>
+        <div class="c-badge-num">+1.000</div>
+        <div class="c-badge-desc">Processos conduzidos</div>
+      </div>
+
+      <!-- Imagem 3 — gestante -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=420&q=80&auto=format&fit=crop" alt="Gestante em repouso" loading="lazy">
+        <div class="c-img-label">Estabilidade desde a confirmação</div>
+      </div>
+
+      <!-- Selo 3 -->
+      <div class="c-badge-card">
+        <div class="c-badge-icon">🏛️</div>
+        <div class="c-badge-num">14 × 0</div>
+        <div class="c-badge-desc">Votos unânimes no TST</div>
+      </div>
+
+      <!-- Imagem 4 — advogado -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=420&q=80&auto=format&fit=crop" alt="Advogado trabalhista" loading="lazy">
+        <div class="c-img-label">Especialistas em direito trabalhista</div>
+      </div>
+
+      <!-- Selo 4 -->
+      <div class="c-badge-card">
+        <div class="c-badge-icon">📍</div>
+        <div class="c-badge-num">Nacional</div>
+        <div class="c-badge-desc">Atendimento em todo o Brasil</div>
+      </div>
+
+      <!-- Imagem 5 — mãe com recém-nascido -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=420&q=80&auto=format&fit=crop" alt="Mãe com recém-nascido" loading="lazy">
+        <div class="c-img-label">5 meses pós-parto protegidos</div>
+      </div>
+
+      <!-- Selo 5 -->
+      <div class="c-badge-card">
+        <div class="c-badge-icon">🔒</div>
+        <div class="c-badge-num">Só paga</div>
+        <div class="c-badge-desc">se ganhar o processo</div>
+      </div>
+
+      <!-- Duplicados para loop infinito -->
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=420&q=80&auto=format&fit=crop" alt="Mãe gestante segurando barriga" loading="lazy">
+        <div class="c-img-label">Proteção garantida por lei</div>
+      </div>
+      <div class="c-badge-card">
+        <div class="c-badge-icon">⭐⭐⭐⭐⭐</div>
+        <div class="c-badge-num">5,0</div>
+        <div class="c-badge-desc">Avaliação no Google</div>
+      </div>
+      <div class="c-img-card">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=420&q=80&auto=format&fit=crop" alt="Contrato de trabalho sendo assinado" loading="lazy">
+        <div class="c-img-label">Seus direitos trabalhistas</div>
+      </div>
+      <div class="c-badge-card">
+        <div class="c-badge-icon">⚖️</div>
+        <div class="c-badge-num">+1.000</div>
+        <div class="c-badge-desc">Processos conduzidos</div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- QUALIFICAÇÃO -->
 <section class="section qualify-section">
@@ -1312,7 +1552,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
   <div class="final-cta-content reveal">
     <h2>Não deixe prescrever<br>o que é seu por direito.</h2>
     <p>A decisão é recente e os prazos para agir são limitados. Fale com os especialistas da SCAC Advocacia e descubra se você tem direito à indenização.</p>
-    <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+    <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
        class="cta-primary" target="_blank" rel="noopener">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Falar com especialista da SCAC
@@ -1333,7 +1573,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 </footer>
 
 <!-- FLOAT -->
-<a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+<a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
    class="scroll-cta" id="floatBtn" target="_blank" rel="noopener">
   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
   Falar com SCAC
@@ -1364,6 +1604,27 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     e.target.value = v;
   });
 
+  // Mapa de labels amigáveis para a mensagem
+  const contratoLabels = {
+    temporario: 'temporário',
+    prazo_determinado: 'por prazo determinado',
+    clt: 'CLT/Efetivo',
+    nao_sei: 'que não tenho certeza do tipo'
+  };
+  const quandoLabels = {
+    '2025_2026': 'em 2025 ou 2026',
+    '2023_2024': 'em 2023 ou 2024',
+    '2021_2022': 'em 2021 ou 2022',
+    '2019_2020': 'em 2019 ou 2020',
+    'antes_2019': 'antes de 2019'
+  };
+  const gravidaLabels = {
+    sim_sabia: 'Sim, eu sabia que estava grávida na data da demissão',
+    descobri_depois: 'Descobri a gravidez depois de ser demitida',
+    pos_parto: 'Estava nos 5 meses após o parto',
+    nao_sei: 'Não tenho certeza se já estava grávida'
+  };
+
   function handleSubmit(e) {
     const nome = document.getElementById('nome').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
@@ -1377,12 +1638,35 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     if (!quando) { e.preventDefault(); highlight('quando'); return false; }
     if (!gravida) { e.preventDefault(); alert('Por favor, informe se estava grávida na demissão.'); return false; }
 
+    // Monta mensagem qualificada com os dados do formulário
+    const contratoTexto = contratoLabels[contrato.value] || contrato.value;
+    const quandoTexto = quandoLabels[quando] || quando;
+    const gravidaTexto = gravidaLabels[gravida.value] || gravida.value;
+
+    const msg = `Olá! Meu nome é ${nome} e vim pelo site da SCAC Advocacia sobre a decisão do TST para gestantes.\n\nTinha contrato ${contratoTexto} e fui demitida ${quandoTexto}.\n${gravidaTexto}.\n\nGostaria de saber se tenho direito à indenização e como funciona o processo. Pode me ajudar?`;
+
+    // Atualiza o href do botão antes de abrir o WA
+    const waUrl = `https://api.whatsapp.com/send/?phone=47999450316&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+    const ctaBtn = document.getElementById('cta-form');
+    ctaBtn.href = waUrl;
+    // Também atualiza o botão da tela de sucesso com a mesma mensagem
+    const successBtn = document.getElementById('success-wa-btn');
+    if (successBtn) successBtn.href = waUrl;
+
+    // Evento de funil: formulário preenchido (não é Lead ainda)
+    if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration');
+
     setTimeout(() => {
       document.getElementById('form-screen').style.display = 'none';
       document.getElementById('success-screen').style.display = 'block';
     }, 200);
     return true;
   }
+
+  // Lead só dispara quando a pessoa realmente clica no WA da tela de sucesso
+  document.getElementById('success-wa-btn').addEventListener('click', function() {
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  });
 
   function highlight(id) {
     const el = document.getElementById(id);
