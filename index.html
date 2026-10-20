@@ -915,6 +915,175 @@
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* POP-UP */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(10,10,18,0.72);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .popup-overlay.popup-visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .popup-box {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 38px 34px 30px;
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.38);
+    animation: popupIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+    text-align: center;
+  }
+
+  @keyframes popupIn {
+    from { opacity: 0; transform: scale(0.88) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 4px 7px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1;
+  }
+  .popup-close:hover { background: var(--cream); color: var(--charcoal); }
+
+  .popup-badge {
+    display: inline-block;
+    background: #FFF3CD;
+    color: #92600A;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 6px;
+    margin-bottom: 18px;
+    border: 1px solid #F5CC6A;
+  }
+
+  .popup-title {
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 800;
+    color: var(--charcoal);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+
+  .popup-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .popup-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .popup-body strong { color: var(--charcoal); font-weight: 600; }
+
+  .popup-proof {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    text-align: left;
+  }
+
+  .popup-proof span {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .popup-proof strong { color: var(--charcoal); font-weight: 600; }
+
+  .popup-cta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: var(--rose);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 22px rgba(200,16,46,0.32);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    letter-spacing: 0.01em;
+    margin-bottom: 11px;
+  }
+
+  .popup-cta:hover {
+    background: var(--rose-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(200,16,46,0.42);
+  }
+
+  .popup-timer-line {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: #AAA;
+    margin-bottom: 14px;
+  }
+
+  .popup-timer-line strong { color: var(--rose); font-weight: 700; }
+
+  .popup-skip {
+    background: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #CCC;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    transition: color 0.15s;
+  }
+
+  .popup-skip:hover { color: var(--muted); }
+
+  @media (max-width: 480px) {
+    .popup-box { padding: 28px 20px 24px; }
+    .popup-title { font-size: 20px; }
+    .popup-cta { font-size: 14px; padding: 14px 16px; }
+  }
+
   /* CARROSSEL */
   .carousel-section {
     background: var(--white);
@@ -1675,6 +1844,91 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     el.focus();
     setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2200);
   }
+  // POP-UP de urgência
+  (function() {
+    const POPUP_DELAY = 8000; // 8 segundos
+    const WA_URL = 'https://api.whatsapp.com/send/?phone=47999450316&text=' +
+      encodeURIComponent('Olá! Vi a decisão do TST sobre gestantes e preciso saber urgente se tenho direito à indenização. Pode me ajudar?') +
+      '&type=phone_number&app_absent=0';
+
+    let shown = false;
+
+    function showPopup() {
+      if (shown) return;
+      shown = true;
+      document.getElementById('urgency-popup').classList.add('popup-visible');
+    }
+
+    // Dispara após 8s
+    setTimeout(showPopup, POPUP_DELAY);
+
+    // Também dispara se a pessoa tentar sair (exit intent — só desktop)
+    document.addEventListener('mouseleave', function(e) {
+      if (e.clientY <= 0) showPopup();
+    });
+
+    window.closePopup = function() {
+      document.getElementById('urgency-popup').classList.remove('popup-visible');
+    };
+
+    window.popupWA = function() {
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+      window.open(WA_URL, '_blank');
+      closePopup();
+    };
+
+    // Fecha clicando fora
+    document.getElementById('urgency-popup').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+
+    // Contador regressivo
+    let secs = 10;
+    function tick() {
+      const el = document.getElementById('popup-timer');
+      if (!el) return;
+      el.textContent = secs;
+      if (secs > 0) { secs--; setTimeout(tick, 1000); }
+    }
+    setTimeout(tick, POPUP_DELAY);
+  })();
 </script>
+
+<!-- POP-UP URGÊNCIA -->
+<div id="urgency-popup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()" aria-label="Fechar">✕</button>
+
+    <div class="popup-badge">⚠️ Atenção — prazo prescricional</div>
+
+    <h2 class="popup-title">
+      Você sabia que o seu direito<br>
+      pode <em>prescrever em breve?</em>
+    </h2>
+
+    <p class="popup-body">
+      A decisão do TST reconheceu que <strong>gestantes demitidas em contrato temporário têm direito à indenização</strong> — mas o prazo para entrar com ação é limitado.
+      <br><br>
+      Cada dia sem agir pode significar <strong>meses de salário perdidos para sempre.</strong>
+    </p>
+
+    <div class="popup-proof">
+      <span>👩 Fernanda recebeu <strong>8 meses de salário</strong> de indenização</span>
+      <span>👩‍🦱 Aline garantiu <strong>licença + verbas</strong> que lhe foram negadas</span>
+    </div>
+
+    <button class="popup-cta" onclick="popupWA()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero garantir meu direito agora
+    </button>
+
+    <p class="popup-timer-line">
+      Consulta gratuita · Só paga se ganhar · Resposta em até <strong id="popup-timer">10</strong>s
+    </p>
+
+    <button class="popup-skip" onclick="closePopup()">Não, vou arriscar perder meu direito</button>
+  </div>
+</div>
+
 </body>
 </html>
