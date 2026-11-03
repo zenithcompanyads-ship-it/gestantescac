@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SCAC Advocacia — Estabilidade para Gestantes em Contrato Temporário</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -17,10 +19,11 @@
     --border: #E4E4EE;
     --white: #FFFFFF;
     --success: #16A34A;
+    --mobile-bar-h: 72px;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
     font-family: 'Poppins', sans-serif;
@@ -48,6 +51,7 @@
     align-items: center;
     gap: 10px;
     text-decoration: none;
+    min-width: 0;
   }
 
   .brand-mark {
@@ -93,6 +97,7 @@
     border-radius: 8px;
     text-decoration: none;
     transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
   }
 
   .navbar-cta:hover { background: var(--rose-dark); transform: translateY(-1px); }
@@ -106,6 +111,7 @@
     font-size: 13px;
     font-weight: 500;
     margin-top: 65px;
+    line-height: 1.45;
   }
 
   .urgency-bar strong { font-weight: 700; }
@@ -227,6 +233,7 @@
     box-shadow: 0 24px 60px rgba(0,0,0,0.35);
     animation: fadeInRight 0.8s 0.2s ease both;
     position: relative;
+    scroll-margin-top: 90px;
   }
 
   .form-card-header {
@@ -248,6 +255,7 @@
     font-size: 12px;
     font-weight: 800;
     color: var(--white);
+    flex-shrink: 0;
   }
 
   .form-logo-text {
@@ -349,7 +357,7 @@
 
   .cta-btn {
     width: 100%;
-    padding: 14px;
+    padding: 16px 14px;
     background: var(--rose);
     color: var(--white);
     font-family: 'Poppins', sans-serif;
@@ -367,6 +375,7 @@
     gap: 8px;
     text-decoration: none;
     letter-spacing: 0.01em;
+    min-height: 52px;
   }
 
   .cta-btn:hover {
@@ -574,6 +583,46 @@
     border-radius: 4px;
   }
 
+  /* MID CTA (nova — reforço de conversão) */
+  .mid-cta {
+    background: var(--rose);
+    padding: 44px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .mid-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 120% at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 60%);
+  }
+  .mid-cta-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .mid-cta h3 {
+    font-size: clamp(20px, 3vw, 27px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .mid-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--white);
+    color: var(--rose-dark);
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    min-height: 52px;
+  }
+  .mid-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.26); }
+
   /* QUALIFY */
   .qualify-section { background: var(--charcoal); position: relative; overflow: hidden; }
   .qualify-section::before {
@@ -748,13 +797,14 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    padding: 15px 34px;
+    padding: 16px 34px;
     border-radius: 10px;
     cursor: pointer;
     border: none;
     transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
     box-shadow: 0 7px 22px rgba(200,16,46,0.28);
     text-decoration: none;
+    min-height: 54px;
   }
 
   .cta-primary:hover {
@@ -866,7 +916,7 @@
     color: rgba(255,255,255,0.5);
   }
 
-  /* FLOAT */
+  /* FLOAT (desktop) */
   .scroll-cta {
     position: fixed;
     bottom: 22px; right: 22px;
@@ -896,6 +946,58 @@
     pointer-events: all;
   }
 
+  /* MOBILE STICKY CTA BAR (nova — maior alavanca de conversão no celular) */
+  .mobile-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 300;
+    background: rgba(17,17,24,0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 11px 14px calc(11px + env(safe-area-inset-bottom));
+    gap: 10px;
+    align-items: center;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.3);
+  }
+
+  .mobile-cta-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+  .mobile-cta-info .mc-top {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .mobile-cta-info .mc-sub {
+    font-size: 10.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1px;
+  }
+
+  .mobile-cta-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--rose);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 13px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(200,16,46,0.4);
+    min-height: 48px;
+  }
+  .mobile-cta-btn:active { transform: scale(0.97); }
+
   /* ANIMATIONS */
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-18px); }
@@ -914,6 +1016,11 @@
   }
 
   .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
 
   /* POP-UP */
   .popup-overlay {
@@ -946,6 +1053,8 @@
     box-shadow: 0 30px 80px rgba(0,0,0,0.38);
     animation: popupIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
     text-align: center;
+    max-height: 92vh;
+    overflow-y: auto;
   }
 
   @keyframes popupIn {
@@ -961,7 +1070,7 @@
     font-size: 16px;
     color: var(--muted);
     cursor: pointer;
-    padding: 4px 7px;
+    padding: 6px 9px;
     border-radius: 6px;
     transition: background 0.15s, color 0.15s;
     line-height: 1;
@@ -1038,7 +1147,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    padding: 15px 20px;
+    padding: 16px 20px;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -1046,6 +1155,7 @@
     transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
     letter-spacing: 0.01em;
     margin-bottom: 11px;
+    min-height: 54px;
   }
 
   .popup-cta:hover {
@@ -1072,7 +1182,7 @@
     color: #CCC;
     cursor: pointer;
     text-decoration: underline;
-    padding: 0;
+    padding: 4px;
     transition: color 0.15s;
   }
 
@@ -1081,7 +1191,7 @@
   @media (max-width: 480px) {
     .popup-box { padding: 28px 20px 24px; }
     .popup-title { font-size: 20px; }
-    .popup-cta { font-size: 14px; padding: 14px 16px; }
+    .popup-cta { font-size: 14px; padding: 15px 16px; }
   }
 
   /* CARROSSEL */
@@ -1206,9 +1316,12 @@
   @media (max-width: 880px) {
     .hero-container {
       grid-template-columns: 1fr;
-      gap: 36px;
+      gap: 32px;
       text-align: center;
     }
+    /* No tablet/celular o formulário vem antes da prova para capturar o lead mais cedo */
+    .hero-copy { order: 2; }
+    .form-card { order: 1; }
     .hero-title { font-size: clamp(30px, 8vw, 48px); }
     .badge { margin-left: auto; margin-right: auto; }
     .hero-subtitle { margin-left: auto; margin-right: auto; text-align: left; }
@@ -1218,35 +1331,48 @@
     .timeline-center { display: none; }
     .rights-grid { grid-template-columns: 1fr; }
     .proof-grid { grid-template-columns: 1fr; }
-    .qualify-grid { grid-template-columns: 1fr; }
+    .qualify-grid { grid-template-columns: 1fr; gap: 28px; }
     .navbar { padding: 12px 18px; }
+
+    /* Ativa barra fixa mobile e esconde o float de desktop */
+    .mobile-cta-bar { display: flex; }
+    .scroll-cta { display: none; }
+    body { padding-bottom: var(--mobile-bar-h); }
+    .carousel-section::before, .carousel-section::after { width: 40px; }
   }
 
   @media (max-width: 560px) {
-    .section { padding: 52px 16px; }
-    .hero-container { padding: 52px 16px 48px; gap: 28px; }
+    .section { padding: 54px 18px; }
+    .hero-container { padding: 40px 18px 44px; gap: 26px; }
     .hero-title { font-size: clamp(28px, 9vw, 40px); }
-    .hero-subtitle { font-size: 14.5px; }
-    .form-card { padding: 22px 16px; border-radius: 12px; max-width: 100%; }
-    .form-title { font-size: 17px; }
-    .radio-group { grid-template-columns: 1fr; }
-    .radio-label { padding: 10px 12px; font-size: 12px; justify-content: flex-start; gap: 8px; }
-    .hero-stats { gap: 14px; }
+    .hero-subtitle { font-size: 14.5px; margin-bottom: 30px; }
+    .hero-stats { padding-top: 24px; }
+    .urgency-bar { font-size: 12px; padding: 10px 16px; }
+    .form-card { padding: 24px 18px; border-radius: 14px; max-width: 100%; }
+    .form-title { font-size: 18px; }
+    .radio-group { grid-template-columns: 1fr 1fr; }
     .stat-num { font-size: 22px; }
-    .scroll-cta { font-size: 12px; padding: 11px 16px; bottom: 14px; right: 14px; }
     .navbar-cta span { display: none; }
-    .navbar-cta { padding: 9px 13px; }
+    .navbar-cta { padding: 10px 13px; }
     .brand-strip { gap: 12px; padding: 16px; }
     .brand-strip-divider { display: none; }
-    .cta-btn { font-size: 13.5px; padding: 13px 10px; }
-    .final-cta { padding: 64px 16px; }
+    .cta-btn { font-size: 14px; }
+    .final-cta { padding: 64px 18px; }
+    .mid-cta { padding: 40px 18px; }
+    .section-desc { font-size: 14.5px; }
+
+    /* iOS: campos com 16px evitam o zoom automático ao focar (reduz abandono) */
+    .field input, .field select { font-size: 16px; padding: 13px 14px; }
+    .radio-label { font-size: 12.5px; padding: 11px 8px; }
   }
 
   @media (max-width: 400px) {
-    .hero-container { padding: 44px 14px 40px; }
-    .form-card { padding: 18px 14px; }
+    .hero-container { padding: 34px 14px 38px; }
+    .form-card { padding: 20px 15px; }
     .badge { font-size: 10px; padding: 5px 10px; }
-    .navbar-cta { display: none; }
+    .navbar-brand .brand-tagline { display: none; }
+    .mobile-cta-info .mc-sub { display: none; }
+    .mobile-cta-btn { padding: 13px 15px; font-size: 13px; }
   }
 </style>
 <!-- Meta Pixel Code -->
@@ -1271,14 +1397,14 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-brand" target="_blank" rel="noopener">
+  <a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-brand" target="_blank" rel="noopener">
     <div class="brand-mark">SC</div>
     <div>
       <span class="brand-name">SCAC Advocacia</span>
       <span class="brand-tagline">Silva & Cikanovicius · Trabalhista e Previdenciário</span>
     </div>
   </a>
-  <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-cta" target="_blank" rel="noopener">
+  <a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0" class="navbar-cta" target="_blank" rel="noopener">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     <span>Fale com um especialista</span>
   </a>
@@ -1292,7 +1418,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 <!-- HERO -->
 <section class="hero">
   <div class="hero-container">
-    <div>
+    <div class="hero-copy">
       <div class="badge">
         <span class="badge-dot"></span>
         Decisão histórica · TST · Março 2026
@@ -1339,7 +1465,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 
         <div class="field">
           <label>WhatsApp com DDD</label>
-          <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel">
+          <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="numeric">
         </div>
 
         <div class="field">
@@ -1398,7 +1524,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
           </div>
         </div>
 
-        <a href="https://api.whatsapp.com/send/?phone=47999450316&text&type=phone_number&app_absent=0"
+        <a href="https://api.whatsapp.com/send/?phone=5547999450316&text&type=phone_number&app_absent=0"
            class="cta-btn" id="cta-form" target="_blank" rel="noopener"
            onclick="return handleSubmit(event)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -1414,9 +1540,9 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
         <p>A equipe da <strong>SCAC Advocacia</strong> vai analisar seu caso e entrar em contato em até <strong>24 horas</strong>.</p>
         <br>
         <a id="success-wa-btn"
-           href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0"
+           href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+Advocacia+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0"
            target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:7px;background:var(--rose);color:white;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:11px 20px;border-radius:8px;text-decoration:none;margin-top:6px;">
+           style="display:inline-flex;align-items:center;gap:7px;background:var(--rose);color:white;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:13px 22px;border-radius:8px;text-decoration:none;margin-top:6px;">
           💬 Falar agora pelo WhatsApp
         </a>
       </div>
@@ -1510,6 +1636,18 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
         <span class="right-highlight">120 dias garantidos por lei</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MID CTA (reforço de conversão no meio da página) -->
+<section class="mid-cta">
+  <div class="mid-cta-content reveal">
+    <h3>Descubra em poucos minutos se você tem direito a receber indenização.</h3>
+    <a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0"
+       class="mid-cta-btn" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Verificar meu direito no WhatsApp
+    </a>
   </div>
 </section>
 
@@ -1721,7 +1859,7 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
   <div class="final-cta-content reveal">
     <h2>Não deixe prescrever<br>o que é seu por direito.</h2>
     <p>A decisão é recente e os prazos para agir são limitados. Fale com os especialistas da SCAC Advocacia e descubra se você tem direito à indenização.</p>
-    <a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
+    <a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
        class="cta-primary" target="_blank" rel="noopener">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
       Falar com especialista da SCAC
@@ -1741,28 +1879,84 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
   <p>© 2026 · SCAC Advocacia · Advocacia Trabalhista e Previdenciária · Todos os direitos reservados.</p>
 </footer>
 
-<!-- FLOAT -->
-<a href="https://api.whatsapp.com/send/?phone=47999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
+<!-- FLOAT (desktop) -->
+<a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+preciso+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+por+demiss%C3%A3o+durante+a+gravidez.+Pode+me+ajudar%3F&type=phone_number&app_absent=0"
    class="scroll-cta" id="floatBtn" target="_blank" rel="noopener">
   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
   Falar com SCAC
 </a>
+
+<!-- BARRA FIXA MOBILE (sempre visível no celular) -->
+<div class="mobile-cta-bar" id="mobileBar">
+  <div class="mobile-cta-info">
+    <span class="mc-top">Tem direito à indenização?</span>
+    <span class="mc-sub">Consulta gratuita · resposta em até 24h</span>
+  </div>
+  <a href="https://api.whatsapp.com/send/?phone=5547999450316&text=Ol%C3%A1%21+Vim+pelo+site+da+SCAC+e+quero+saber+se+tenho+direito+%C3%A0+indeniza%C3%A7%C3%A3o+como+gestante+demitida.&type=phone_number&app_absent=0"
+     class="mobile-cta-btn" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- POP-UP URGÊNCIA -->
+<div id="urgency-popup" class="popup-overlay" role="dialog" aria-modal="true">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()" aria-label="Fechar">✕</button>
+
+    <div class="popup-badge">⚠️ Atenção — prazo prescricional</div>
+
+    <h2 class="popup-title">
+      Você sabia que o seu direito<br>
+      pode <em>prescrever em breve?</em>
+    </h2>
+
+    <p class="popup-body">
+      A decisão do TST reconheceu que <strong>gestantes demitidas em contrato temporário têm direito à indenização</strong> — mas o prazo para entrar com ação é limitado.
+      <br><br>
+      Cada dia sem agir pode significar <strong>meses de salário perdidos para sempre.</strong>
+    </p>
+
+    <div class="popup-proof">
+      <span>👩 Fernanda recebeu <strong>8 meses de salário</strong> de indenização</span>
+      <span>👩‍🦱 Aline garantiu <strong>licença + verbas</strong> que lhe foram negadas</span>
+    </div>
+
+    <button class="popup-cta" onclick="popupWA()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Quero garantir meu direito agora
+    </button>
+
+    <p class="popup-timer-line">
+      Consulta gratuita · Só paga se ganhar · Resposta em até <strong id="popup-timer">10</strong>s
+    </p>
+
+    <button class="popup-skip" onclick="closePopup()">Não, vou arriscar perder meu direito</button>
+  </div>
+</div>
 
 <script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 50);
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 50); io.unobserve(e.target); }
     });
   }, { threshold: 0.08 });
   reveals.forEach(el => io.observe(el));
 
-  // Float btn
+  // Meta Pixel — Lead ao clicar nos botões de WhatsApp (o do formulário dispara no envio válido)
+  function fireLead(){ if (typeof fbq !== 'undefined') fbq('track', 'Lead'); }
+  document.querySelectorAll('a[href*="api.whatsapp.com"], a[href*="wa.me"]').forEach(function(a){
+    if (a.id === 'cta-form') return;
+    a.addEventListener('click', fireLead);
+  });
+
+  // Float btn (desktop)
   const floatBtn = document.getElementById('floatBtn');
   window.addEventListener('scroll', () => {
     floatBtn.classList.toggle('visible', window.scrollY > 460);
-  });
+  }, { passive: true });
 
   // Phone mask
   document.getElementById('whatsapp').addEventListener('input', (e) => {
@@ -1815,27 +2009,20 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     const msg = `Olá! Meu nome é ${nome} e vim pelo site da SCAC Advocacia sobre a decisão do TST para gestantes.\n\nTinha contrato ${contratoTexto} e fui demitida ${quandoTexto}.\n${gravidaTexto}.\n\nGostaria de saber se tenho direito à indenização e como funciona o processo. Pode me ajudar?`;
 
     // Atualiza o href do botão antes de abrir o WA
-    const waUrl = `https://api.whatsapp.com/send/?phone=47999450316&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
+    const waUrl = `https://api.whatsapp.com/send/?phone=5547999450316&text=${encodeURIComponent(msg)}&type=phone_number&app_absent=0`;
     const ctaBtn = document.getElementById('cta-form');
     ctaBtn.href = waUrl;
     // Também atualiza o botão da tela de sucesso com a mesma mensagem
     const successBtn = document.getElementById('success-wa-btn');
     if (successBtn) successBtn.href = waUrl;
 
-    // Evento de funil: formulário preenchido (não é Lead ainda)
-    if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration');
-
+    fireLead();
     setTimeout(() => {
       document.getElementById('form-screen').style.display = 'none';
       document.getElementById('success-screen').style.display = 'block';
     }, 200);
     return true;
   }
-
-  // Lead só dispara quando a pessoa realmente clica no WA da tela de sucesso
-  document.getElementById('success-wa-btn').addEventListener('click', function() {
-    if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-  });
 
   function highlight(id) {
     const el = document.getElementById(id);
@@ -1844,10 +2031,11 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     el.focus();
     setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2200);
   }
+
   // POP-UP de urgência
   (function() {
     const POPUP_DELAY = 8000; // 8 segundos
-    const WA_URL = 'https://api.whatsapp.com/send/?phone=47999450316&text=' +
+    const WA_URL = 'https://api.whatsapp.com/send/?phone=5547999450316&text=' +
       encodeURIComponent('Olá! Vi a decisão do TST sobre gestantes e preciso saber urgente se tenho direito à indenização. Pode me ajudar?') +
       '&type=phone_number&app_absent=0';
 
@@ -1855,8 +2043,10 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
 
     function showPopup() {
       if (shown) return;
+      var _p = document.getElementById('urgency-popup');
+      if (!_p) return;
       shown = true;
-      document.getElementById('urgency-popup').classList.add('popup-visible');
+      _p.classList.add('popup-visible');
     }
 
     // Dispara após 8s
@@ -1868,7 +2058,8 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     });
 
     window.closePopup = function() {
-      document.getElementById('urgency-popup').classList.remove('popup-visible');
+      var _p = document.getElementById('urgency-popup');
+      if (_p) _p.classList.remove('popup-visible');
     };
 
     window.popupWA = function() {
@@ -1878,7 +2069,8 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     };
 
     // Fecha clicando fora
-    document.getElementById('urgency-popup').addEventListener('click', function(e) {
+    var _ov = document.getElementById('urgency-popup');
+    if (_ov) _ov.addEventListener('click', function(e) {
       if (e.target === this) closePopup();
     });
 
@@ -1893,42 +2085,6 @@ src="https://www.facebook.com/tr?id=987699800543590&ev=PageView&noscript=1"
     setTimeout(tick, POPUP_DELAY);
   })();
 </script>
-
-<!-- POP-UP URGÊNCIA -->
-<div id="urgency-popup" class="popup-overlay" role="dialog" aria-modal="true">
-  <div class="popup-box">
-    <button class="popup-close" onclick="closePopup()" aria-label="Fechar">✕</button>
-
-    <div class="popup-badge">⚠️ Atenção — prazo prescricional</div>
-
-    <h2 class="popup-title">
-      Você sabia que o seu direito<br>
-      pode <em>prescrever em breve?</em>
-    </h2>
-
-    <p class="popup-body">
-      A decisão do TST reconheceu que <strong>gestantes demitidas em contrato temporário têm direito à indenização</strong> — mas o prazo para entrar com ação é limitado.
-      <br><br>
-      Cada dia sem agir pode significar <strong>meses de salário perdidos para sempre.</strong>
-    </p>
-
-    <div class="popup-proof">
-      <span>👩 Fernanda recebeu <strong>8 meses de salário</strong> de indenização</span>
-      <span>👩‍🦱 Aline garantiu <strong>licença + verbas</strong> que lhe foram negadas</span>
-    </div>
-
-    <button class="popup-cta" onclick="popupWA()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.121 1.522 5.854L.053 23.447a.5.5 0 0 0 .607.606l5.64-1.47A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.5-5.254-1.377l-.376-.217-3.905 1.017 1.034-3.79-.233-.384A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-      Quero garantir meu direito agora
-    </button>
-
-    <p class="popup-timer-line">
-      Consulta gratuita · Só paga se ganhar · Resposta em até <strong id="popup-timer">10</strong>s
-    </p>
-
-    <button class="popup-skip" onclick="closePopup()">Não, vou arriscar perder meu direito</button>
-  </div>
-</div>
 
 </body>
 </html>
